@@ -5,6 +5,8 @@
  */
 package hdt6;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author sevic69
@@ -16,8 +18,10 @@ public class EntryPoint
      * @param args the command line arguments
      */
     public static void main(String[] args) 
+            
     {
-        
+        JFrame f = new CVista();
+        f.setVisible(true);
     }
     
 }
