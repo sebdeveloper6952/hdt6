@@ -18,15 +18,20 @@ import java.util.Scanner;
  */
 public class CModelo 
 {
-    
     protected Map<String, Integer> mapaColeccion;
     protected Map<String, String> mapaCartas;
     protected List<ObservadorColeccion> obsColeccion;
     protected String fileName = "src/cards_desc.txt";
     
-    public CModelo(int opciones)
+    public CModelo()
     {
         obsColeccion = new ArrayList<>();
+    }
+    
+    public void escogerImplementacion(int opcion)
+    {
+        // usar factory
+        leerArchivoDeCartas(fileName);
     }
     
     public void agregar(String nombre)
@@ -37,7 +42,8 @@ public class CModelo
          mapaColeccion.replace(nombre, val+1);
      }   
      else 
-         mapaColeccion.put(nombre, 1);    
+         mapaColeccion.put(nombre, 1);
+     actualizarObservadoresColeccion();
     }
     
     
@@ -46,6 +52,10 @@ public class CModelo
        return mapaCartas.get(nombre); 
     }
     
+    public void registrarObservador(ObservadorColeccion o)
+    {
+        obsColeccion.add(o);
+    }
     
     private void actualizarObservadoresColeccion()
     {

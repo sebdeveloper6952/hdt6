@@ -20,8 +20,7 @@ public class EntryPoint
     public static void main(String[] args) 
             
     {
-        JFrame f = new CVista();
-        f.setVisible(true);
+        CControlador c = new CControlador();
     }
     
 }
