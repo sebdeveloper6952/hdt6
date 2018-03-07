@@ -5,9 +5,12 @@
  */
 package hdt6;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 /**
  *
@@ -16,38 +19,63 @@ import java.util.Map;
 public class CModelo 
 {
     
-    protected Map<String, Integer >map;
-    protected Map<String, String > cartas;
-    protected List<ObservadorColeccion>observadores;
+    protected Map<String, Integer> mapaColeccion;
+    protected Map<String, String> mapaCartas;
+    protected List<ObservadorColeccion> obsColeccion;
     protected String fileName = "src/cards_desc.txt";
     
     public CModelo(int opciones)
     {
-        observadores = new ArrayList<>();
+        obsColeccion = new ArrayList<>();
     }
     
     public void agregar(String nombre)
     {
-     if(map.containsKey(nombre))
+     if(mapaColeccion.containsKey(nombre))
      {
-         Integer val = map.get(nombre);
-         map.replace(nombre, val+1);
+         Integer val = mapaColeccion.get(nombre);
+         mapaColeccion.replace(nombre, val+1);
      }   
      else 
-         map.put(nombre, 1);    
+         mapaColeccion.put(nombre, 1);    
     }
     
     
     public String buscar(String nombre)
     {  
-       return cartas.get(nombre); 
+       return mapaCartas.get(nombre); 
     }
     
     
-    private void actualizarLista()
+    private void actualizarObservadoresColeccion()
     {
-      for(ObservadorColeccion obs:observadores)
-          obs.actualizarColeccion(map);
+      for(ObservadorColeccion obs: obsColeccion)
+          obs.actualizarColeccion(mapaColeccion);
     }
     
+    private void leerArchivoDeCartas(String fileName)
+    {
+        Scanner scanner = null;
+        try
+        {
+            scanner = new Scanner(new BufferedReader(new FileReader(fileName)));
+            while(scanner.hasNextLine())
+            {
+                String[] line = scanner.nextLine().split("\\|");
+                // insertar carta a mapa de todas las cartas
+                mapaCartas.put(line[0], line[1]);
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+        finally
+        {
+            if(scanner != null)
+            {
+                scanner.close();
+            }
+        }
+    }
 }
