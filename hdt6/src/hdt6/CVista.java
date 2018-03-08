@@ -6,6 +6,7 @@
 package hdt6;
 
 import java.util.Map;
+import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -49,9 +50,9 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion, O
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_Coleccion = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jTField_NombreCarta = new javax.swing.JTextField();
+        jBtn_BuscarCarta = new javax.swing.JButton();
+        jBtn_AgregarCarta = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -93,11 +94,7 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion, O
                 jBtn_EscogerImplementacionMouseClicked(evt);
             }
         });
-        jBtn_EscogerImplementacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtn_EscogerImplementacionActionPerformed(evt);
-            }
-        });
+        
         jPanel5.add(jBtn_EscogerImplementacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(591, 101, -1, -1));
 
         jTabbedPane2.addTab("Cartas", jPanel5);
@@ -123,13 +120,27 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion, O
         jScrollPane1.setViewportView(jTable_Coleccion);
 
         jPanel6.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, -1, 480));
-        jPanel6.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(523, 43, 240, -1));
 
-        jButton1.setText("Buscar");
-        jPanel6.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, -1, -1));
+        jTField_NombreCarta.setEnabled(false);
+        jPanel6.add(jTField_NombreCarta, new org.netbeans.lib.awtextra.AbsoluteConstraints(523, 43, 240, -1));
 
-        jButton3.setText("Agregar");
-        jPanel6.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 80, -1, -1));
+        jBtn_BuscarCarta.setText("Buscar");
+        jBtn_BuscarCarta.setEnabled(false);
+        jBtn_BuscarCarta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jBtn_BuscarCartaMouseClicked(evt);
+            }
+        });
+        jPanel6.add(jBtn_BuscarCarta, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, -1, -1));
+
+        jBtn_AgregarCarta.setText("Agregar");
+        jBtn_AgregarCarta.setEnabled(false);
+        jBtn_AgregarCarta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jBtn_AgregarCartaMouseClicked(evt);
+            }
+        });
+        jPanel6.add(jBtn_AgregarCarta, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 80, -1, -1));
 
         jLabel1.setText("Agregar a mi coleccion");
         jPanel6.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 10, -1, -1));
@@ -146,11 +157,40 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion, O
     private void jBtn_EscogerImplementacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtn_EscogerImplementacionMouseClicked
         controlador.escogerImplementacion(
                 jCmbBox_Implementacion.getSelectedIndex());
+        jTField_NombreCarta.setEnabled(true);
+        jBtn_AgregarCarta.setEnabled(true);
+        jBtn_BuscarCarta.setEnabled(true);
     }//GEN-LAST:event_jBtn_EscogerImplementacionMouseClicked
 
-    private void jBtn_EscogerImplementacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_EscogerImplementacionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBtn_EscogerImplementacionActionPerformed
+    private void jBtn_AgregarCartaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtn_AgregarCartaMouseClicked
+        try
+        {
+            controlador.agregarCartaAColeccion(jTField_NombreCarta.getText());
+        }
+        catch(IllegalStateException e) 
+        {
+            // show error dialog
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jBtn_AgregarCartaMouseClicked
+
+    private void jBtn_BuscarCartaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtn_BuscarCartaMouseClicked
+        try
+        {
+            String nombre = jTField_NombreCarta.getText();
+            String tipo = controlador.buscarTipo(nombre);
+            JOptionPane.showMessageDialog(rootPane, "Nombre: " + nombre + 
+                    " Tipo: " + tipo, "Resultado de busqueda", 
+                    JOptionPane.PLAIN_MESSAGE);
+        }
+        catch(IllegalStateException e) 
+        {
+            // show error dialog
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(), 
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jBtn_BuscarCartaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -158,9 +198,9 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion, O
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtn_AgregarCarta;
+    private javax.swing.JButton jBtn_BuscarCarta;
     private javax.swing.JButton jBtn_EscogerImplementacion;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jCmbBox_Implementacion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -169,10 +209,10 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion, O
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTField_NombreCarta;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTable jTable_Cartas;
     private javax.swing.JTable jTable_Coleccion;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -198,6 +238,7 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion, O
         TablaColeccion(Map<String, Integer> map)
         {
             _map = map;
+            datos = new Object[_map.size()][nombreColumnas.length];
             int i = 0;
             for(String llave: map.keySet())
             {
@@ -225,6 +266,17 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion, O
             return datos[rowIndex][columnIndex];
         }
         
+        @Override
+        public String getColumnName(int index)
+        {
+            return nombreColumnas[index];
+        }
+        
+        @Override
+        public Class getColumnClass(int c) 
+        { 
+            return getValueAt(0, c).getClass();
+        }
     }
     
     class TablaCartas extends AbstractTableModel
@@ -237,6 +289,7 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion, O
         TablaCartas(Map<String, String> map)
         {
             _map = map;
+            datos = new Object[_map.size()][nombreColumnas.length];
             int i = 0;
             for(String llave: _map.keySet())
             {
@@ -247,20 +300,34 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion, O
         }
 
         @Override
-        public int getRowCount() {
+        public int getRowCount() 
+        {
             return _map.size();
         }
 
         @Override
-        public int getColumnCount() {
+        public int getColumnCount() 
+        {
             return nombreColumnas.length;
         }
 
         @Override
-        public Object getValueAt(int rowIndex, int columnIndex) {
+        public Object getValueAt(int rowIndex, int columnIndex) 
+        {
             return datos[rowIndex][columnIndex];
         }
         
+        @Override
+        public String getColumnName(int index)
+        {
+            return nombreColumnas[index];
+        }
+        
+        @Override
+        public Class getColumnClass(int c) 
+        { 
+            return getValueAt(0, c).getClass();
+        }
     }
         
 }

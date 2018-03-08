@@ -47,7 +47,7 @@ public class CModelo
         mapaCartas = MapFactory.crearMapa(opcion);
         mapaColeccion = MapFactory.crearMapa(opcion);
         leerArchivoDeCartas(fileName);
-        actualizarObservadoresColeccion();
+        actualizarObservadoresCartas();
     }
     
     
@@ -59,20 +59,26 @@ public class CModelo
     
     public void agregarCarta(String nombre)
     {
-     if(mapaColeccion.containsKey(nombre))
-     {
-         Integer val = mapaColeccion.get(nombre);
-         mapaColeccion.replace(nombre, val+1);
-     }   
-     else 
-         mapaColeccion.put(nombre, 1);
-     actualizarObservadoresCartas();
+        if(mapaCartas.containsKey(nombre))
+        {
+            if(mapaColeccion.containsKey(nombre))
+            {
+                Integer val = mapaColeccion.get(nombre);
+                mapaColeccion.replace(nombre, val+1);
+            }   
+            else mapaColeccion.put(nombre, 1);
+         actualizarObservadoresColeccion();
+         return;
+        }
+        throw new IllegalStateException("La carta no existe.");
     }
     
     
     public String buscarTipo(String nombre)
     {  
-       return mapaCartas.get(nombre); 
+       if(mapaCartas.containsKey(nombre))
+        return mapaCartas.get(nombre);
+       throw new IllegalStateException("La carta no existe.");
     }
     
     /**

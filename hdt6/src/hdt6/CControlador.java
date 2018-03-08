@@ -55,8 +55,8 @@ public class CControlador
      * @param nombre El texto dentro del jTextfield que corresponde al nombre
      * de la carta que se quiere agregar. 
      */
-    public void buscarCarta(String nombre)
+    public String buscarTipo(String nombre)
     {
-        modelo.buscarTipo(nombre);
+        return modelo.buscarTipo(nombre);
     }
 }
