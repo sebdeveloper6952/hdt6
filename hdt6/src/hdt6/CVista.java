@@ -93,6 +93,11 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion, O
                 jBtn_EscogerImplementacionMouseClicked(evt);
             }
         });
+        jBtn_EscogerImplementacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtn_EscogerImplementacionActionPerformed(evt);
+            }
+        });
         jPanel5.add(jBtn_EscogerImplementacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(591, 101, -1, -1));
 
         jTabbedPane2.addTab("Cartas", jPanel5);
@@ -142,6 +147,10 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion, O
         controlador.escogerImplementacion(
                 jCmbBox_Implementacion.getSelectedIndex());
     }//GEN-LAST:event_jBtn_EscogerImplementacionMouseClicked
+
+    private void jBtn_EscogerImplementacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_EscogerImplementacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtn_EscogerImplementacionActionPerformed
 
     /**
      * @param args the command line arguments
