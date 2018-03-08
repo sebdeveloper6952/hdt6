@@ -169,19 +169,25 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion, O
         catch(IllegalStateException e) 
         {
             // show error dialog
-            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(), "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jBtn_AgregarCartaMouseClicked
 
     private void jBtn_BuscarCartaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtn_BuscarCartaMouseClicked
         try
         {
-            String tipo = controlador.buscarTipo(jTField_NombreCarta.getText());
+            String nombre = jTField_NombreCarta.getText();
+            String tipo = controlador.buscarTipo(nombre);
+            JOptionPane.showMessageDialog(rootPane, "Nombre: " + nombre + 
+                    " Tipo: " + tipo, "Resultado de busqueda", 
+                    JOptionPane.PLAIN_MESSAGE);
         }
         catch(IllegalStateException e) 
         {
             // show error dialog
-            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+            JOptionPane.showMessageDialog(rootPane, e.getMessage(), 
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jBtn_BuscarCartaMouseClicked
 
@@ -265,6 +271,11 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion, O
             return nombreColumnas[index];
         }
         
+        @Override
+        public Class getColumnClass(int c) 
+        { 
+            return getValueAt(0, c).getClass();
+        }
     }
     
     class TablaCartas extends AbstractTableModel
@@ -311,6 +322,11 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion, O
             return nombreColumnas[index];
         }
         
+        @Override
+        public Class getColumnClass(int c) 
+        { 
+            return getValueAt(0, c).getClass();
+        }
     }
         
 }
