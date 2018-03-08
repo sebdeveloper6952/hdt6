@@ -21,20 +21,23 @@ public class CModelo
     protected Map<String, Integer> mapaColeccion;
     protected Map<String, String> mapaCartas;
     protected List<ObservadorColeccion> obsColeccion;
+    protected List<ObservadorCartas> obsCartas;
     protected String fileName = "src/cards_desc.txt";
     
     public CModelo()
     {
         obsColeccion = new ArrayList<>();
+        obsCartas = new ArrayList<>();
     }
     
     public void escogerImplementacion(int opcion)
     {
-        // usar factory
+        mapaCartas = MapFactory.crearMapa(opcion);
+        mapaColeccion = MapFactory.crearMapa(opcion);
         leerArchivoDeCartas(fileName);
     }
     
-    public void agregar(String nombre)
+    public void agregarCarta(String nombre)
     {
      if(mapaColeccion.containsKey(nombre))
      {
@@ -47,14 +50,19 @@ public class CModelo
     }
     
     
-    public String buscar(String nombre)
+    public String buscarTipo(String nombre)
     {  
        return mapaCartas.get(nombre); 
     }
     
-    public void registrarObservador(ObservadorColeccion o)
+    public void registrarObservadorColeccion(ObservadorColeccion o)
     {
         obsColeccion.add(o);
+    }
+    
+    public void registrarObservadorCartas(ObservadorCartas o)
+    {
+        obsCartas.add(o);
     }
     
     private void actualizarObservadoresColeccion()
@@ -62,6 +70,13 @@ public class CModelo
       for(ObservadorColeccion obs: obsColeccion)
           obs.actualizarColeccion(mapaColeccion);
     }
+    
+    private void actualizarObservadoresCartas()
+    {
+      for(ObservadorCartas obs: obsCartas)
+          obs.actualizarCartas(mapaCartas);
+    }
+    
     
     private void leerArchivoDeCartas(String fileName)
     {

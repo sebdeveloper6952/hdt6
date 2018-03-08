@@ -6,12 +6,13 @@
 package hdt6;
 
 import java.util.Map;
+import javax.swing.table.AbstractTableModel;
 
 /**
  *
  * @author sevic69
  */
-public class CVista extends javax.swing.JFrame implements ObservadorColeccion
+public class CVista extends javax.swing.JFrame implements ObservadorColeccion, ObservadorCartas
 {
     protected CControlador controlador;
     protected CModelo modelo;
@@ -23,7 +24,8 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion
     {
         controlador = c;
         modelo = m;
-        modelo.registrarObservador(this);
+        modelo.registrarObservadorColeccion(this);
+        modelo.registrarObservadorCartas(this);
         initComponents();
     }
 
@@ -156,6 +158,89 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion
 
     @Override
     public void actualizarColeccion(Map<String, Integer> map) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        jTable_Coleccion.setModel(new TablaColeccion(map));
+        jTable_Coleccion.setAutoCreateRowSorter(true);
+        
     }
+
+    @Override
+    public void actualizarCartas(Map<String, String> map) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    class TablaColeccion extends AbstractTableModel
+    {
+        
+        Object[][] datos;
+        Map<String, Integer> _map;
+        String[] nombreColumnas = {"Nomnbre", "Tipo", "Cantidad"};
+        
+        TablaColeccion(Map<String, Integer> map)
+        {
+            _map = map;
+            int i = 0;
+            for(String llave: map.keySet())
+            {
+                datos[i][0] = llave;
+                datos[i][1] = modelo.buscarTipo(llave);
+                datos[i][2] = map.get(llave);
+                i++;
+            }
+        }
+        
+        
+
+        @Override
+        public int getRowCount() {
+            return _map.size();
+        }
+
+        @Override
+        public int getColumnCount() {
+            return nombreColumnas.length;
+        }
+
+        @Override
+        public Object getValueAt(int rowIndex, int columnIndex) {
+            return datos[rowIndex][columnIndex];
+        }
+        
+    }
+    
+    class TablaCartas extends AbstractTableModel
+    {
+        
+        Object[][] datos;
+        Map<String, Integer> _map;
+        String[] nombreColumnas = {"Nomnbre", "Tipo"};
+        
+        TablaCartas(Map<String, Integer> map)
+        {
+            _map = map;
+            int i = 0;
+            for(String llave: _map.keySet())
+            {
+                datos[i][0] = llave;
+                datos[i][1] = _map.get(llave);
+                i++;
+            }
+        }
+
+        @Override
+        public int getRowCount() {
+            return _map.size();
+        }
+
+        @Override
+        public int getColumnCount() {
+            return nombreColumnas.length;
+        }
+
+        @Override
+        public Object getValueAt(int rowIndex, int columnIndex) {
+            return datos[rowIndex][columnIndex];
+        }
+        
+    }
+        
 }

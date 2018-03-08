@@ -22,11 +22,11 @@ public class CControlador
     
     public void agregarCartaAColeccion(String nombre)
     {
-        modelo.agregar(nombre);
+        modelo.agregarCarta(nombre);
     }
     
     public void buscarCarta(String nombre)
     {
-        modelo.buscar(nombre);
+        modelo.buscarTipo(nombre);
     }
 }
