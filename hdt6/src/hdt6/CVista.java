@@ -9,16 +9,25 @@ import java.util.Map;
 import javax.swing.table.AbstractTableModel;
 
 /**
- *
- * @author sevic69
+ * @author Jose Andres Arenas 14470
+ * @author Sebastian Arriola 11463
+ * @author Fernando Figueroa 14175
+ * 
+ * 
+ * 
+ * 
+ * Esta clase es la que se encarga de hacer toda la interfaz grafica del
+ * programa 
  */
 public class CVista extends javax.swing.JFrame implements ObservadorColeccion, ObservadorCartas
 {
     protected CControlador controlador;
     protected CModelo modelo;
     
+    
+    
     /**
-     * Creates new form CVista
+     * El constructor de registrar la vista como observador del modelo.
      */
     public CVista(CModelo m, CControlador c) 
     {
@@ -166,6 +175,11 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion, O
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
+    
+    /**
+     * Se llama este metodo cuando el usuario agrega una carta a su coleccion. 
+     * @param map es el mapa que tiene guardada la coleccion del usuario. 
+     */
     @Override
     public void actualizarColeccion(Map<String, Integer> map) {
         jTable_Coleccion.setModel(new TablaColeccion(map));
@@ -173,12 +187,21 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion, O
         
     }
 
+    /**
+     * Se llama este motodo cuando el programa lee el archivo que contiene
+     * el nombre de todas las cartas. 
+     * @param map 
+     */
     @Override
     public void actualizarCartas(Map<String, String> map) {
         jTable_Cartas.setModel(new TablaCartas(map));
         jTable_Cartas.setAutoCreateRowSorter(true);
     }
     
+    
+    /**
+     * Es el modelo para la tabla que muestra la coleccion de usuario
+     */
     class TablaColeccion extends AbstractTableModel
     {
         
@@ -218,6 +241,9 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion, O
         
     }
     
+    /**
+     * Es el modelo para la tabla que muestra todas las cartas.
+     */
     class TablaCartas extends AbstractTableModel
     {
         
