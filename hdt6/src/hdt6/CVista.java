@@ -94,6 +94,7 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion, O
                 jBtn_EscogerImplementacionMouseClicked(evt);
             }
         });
+        
         jPanel5.add(jBtn_EscogerImplementacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(591, 101, -1, -1));
 
         jTabbedPane2.addTab("Cartas", jPanel5);
