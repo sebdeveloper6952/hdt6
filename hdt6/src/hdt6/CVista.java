@@ -189,6 +189,7 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion, O
         TablaColeccion(Map<String, Integer> map)
         {
             _map = map;
+            datos = new Object[_map.size()][nombreColumnas.length];
             int i = 0;
             for(String llave: map.keySet())
             {
@@ -216,6 +217,12 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion, O
             return datos[rowIndex][columnIndex];
         }
         
+        @Override
+        public String getColumnName(int index)
+        {
+            return nombreColumnas[index];
+        }
+        
     }
     
     class TablaCartas extends AbstractTableModel
@@ -228,6 +235,7 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion, O
         TablaCartas(Map<String, String> map)
         {
             _map = map;
+            datos = new Object[_map.size()][nombreColumnas.length];
             int i = 0;
             for(String llave: _map.keySet())
             {
@@ -238,18 +246,27 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion, O
         }
 
         @Override
-        public int getRowCount() {
+        public int getRowCount() 
+        {
             return _map.size();
         }
 
         @Override
-        public int getColumnCount() {
+        public int getColumnCount() 
+        {
             return nombreColumnas.length;
         }
 
         @Override
-        public Object getValueAt(int rowIndex, int columnIndex) {
+        public Object getValueAt(int rowIndex, int columnIndex) 
+        {
             return datos[rowIndex][columnIndex];
+        }
+        
+        @Override
+        public String getColumnName(int index)
+        {
+            return nombreColumnas[index];
         }
         
     }

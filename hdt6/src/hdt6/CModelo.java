@@ -35,7 +35,7 @@ public class CModelo
         mapaCartas = MapFactory.crearMapa(opcion);
         mapaColeccion = MapFactory.crearMapa(opcion);
         leerArchivoDeCartas(fileName);
-        actualizarObservadoresColeccion();
+        actualizarObservadoresCartas();
     }
     
     public void agregarCarta(String nombre)
@@ -47,7 +47,7 @@ public class CModelo
      }   
      else 
          mapaColeccion.put(nombre, 1);
-     actualizarObservadoresCartas();
+     actualizarObservadoresColeccion();
     }
     
     
