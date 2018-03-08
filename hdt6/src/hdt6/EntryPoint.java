@@ -5,8 +5,6 @@
  */
 package hdt6;
 
-import javax.swing.JFrame;
-
 /**
  *
  * @author sevic69
