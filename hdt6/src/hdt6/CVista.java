@@ -43,9 +43,9 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion, O
         jPanel5 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_Cartas = new javax.swing.JTable();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jCmbBox_Implementacion = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        jBtn_EscogerImplementacion = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_Coleccion = new javax.swing.JTable();
@@ -81,14 +81,19 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion, O
 
         jPanel5.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 3, 487, 490));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HashMap", "LinkedHashMap", "TreeMap" }));
-        jPanel5.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(569, 57, -1, -1));
+        jCmbBox_Implementacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HashMap", "LinkedHashMap", "TreeMap" }));
+        jPanel5.add(jCmbBox_Implementacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(569, 57, -1, -1));
 
         jLabel2.setText("Escoger Implementacion");
         jPanel5.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(569, 23, -1, -1));
 
-        jButton2.setText("Escoja");
-        jPanel5.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(591, 101, -1, -1));
+        jBtn_EscogerImplementacion.setLabel("Escoger");
+        jBtn_EscogerImplementacion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jBtn_EscogerImplementacionMouseClicked(evt);
+            }
+        });
+        jPanel5.add(jBtn_EscogerImplementacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(591, 101, -1, -1));
 
         jTabbedPane2.addTab("Cartas", jPanel5);
 
@@ -133,16 +138,21 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion, O
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jBtn_EscogerImplementacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtn_EscogerImplementacionMouseClicked
+        controlador.escogerImplementacion(
+                jCmbBox_Implementacion.getSelectedIndex());
+    }//GEN-LAST:event_jBtn_EscogerImplementacionMouseClicked
+
     /**
      * @param args the command line arguments
      */
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtn_EscogerImplementacion;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jCmbBox_Implementacion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel4;
@@ -174,7 +184,7 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion, O
         
         Object[][] datos;
         Map<String, Integer> _map;
-        String[] nombreColumnas = {"Nomnbre", "Tipo", "Cantidad"};
+        String[] nombreColumnas = {"Nombre", "Tipo", "Cantidad"};
         
         TablaColeccion(Map<String, Integer> map)
         {
@@ -213,7 +223,7 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion, O
         
         Object[][] datos;
         Map<String, String> _map;
-        String[] nombreColumnas = {"Nomnbre", "Tipo"};
+        String[] nombreColumnas = {"Nombre", "Tipo"};
         
         TablaCartas(Map<String, String> map)
         {

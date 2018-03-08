@@ -20,6 +20,11 @@ public class CControlador
         f.setVisible(true);
     }
     
+    public void escogerImplementacion(int opcion)
+    {
+        modelo.escogerImplementacion(opcion);
+    }
+    
     public void agregarCartaAColeccion(String nombre)
     {
         modelo.agregarCarta(nombre);
