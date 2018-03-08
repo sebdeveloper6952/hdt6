@@ -165,7 +165,8 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion, O
 
     @Override
     public void actualizarCartas(Map<String, String> map) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        jTable_Cartas.setModel(new TablaCartas(map));
+        jTable_Cartas.setAutoCreateRowSorter(true);
     }
     
     class TablaColeccion extends AbstractTableModel
@@ -211,10 +212,10 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion, O
     {
         
         Object[][] datos;
-        Map<String, Integer> _map;
+        Map<String, String> _map;
         String[] nombreColumnas = {"Nomnbre", "Tipo"};
         
-        TablaCartas(Map<String, Integer> map)
+        TablaCartas(Map<String, String> map)
         {
             _map = map;
             int i = 0;
