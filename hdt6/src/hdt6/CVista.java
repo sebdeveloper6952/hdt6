@@ -80,7 +80,7 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion, O
         });
         jScrollPane2.setViewportView(jTable_Cartas);
 
-        jPanel5.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 3, 487, 490));
+        jPanel5.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 3, 487, 500));
 
         jCmbBox_Implementacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HashMap", "LinkedHashMap", "TreeMap" }));
         jPanel5.add(jCmbBox_Implementacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(569, 57, -1, -1));
@@ -118,7 +118,7 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion, O
         });
         jScrollPane1.setViewportView(jTable_Coleccion);
 
-        jPanel6.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, -1, 480));
+        jPanel6.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, -1, 500));
 
         jTField_NombreCarta.setEnabled(false);
         jPanel6.add(jTField_NombreCarta, new org.netbeans.lib.awtextra.AbsoluteConstraints(523, 43, 240, -1));
@@ -146,7 +146,7 @@ public class CVista extends javax.swing.JFrame implements ObservadorColeccion, O
 
         jTabbedPane2.addTab("Mi Coleccion", jPanel6);
 
-        jPanel4.add(jTabbedPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 510));
+        jPanel4.add(jTabbedPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 530));
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
