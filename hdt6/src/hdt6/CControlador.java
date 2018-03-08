@@ -33,19 +33,16 @@ public class CControlador
         f.setVisible(true);
     }
     
-<<<<<<< HEAD
     public void escogerImplementacion(int opcion)
     {
         modelo.escogerImplementacion(opcion);
     }
-=======
     
     /**
      * Recibe el input del boton agregar, y lo envia a la clase modelo.
      * @param nombre El texto dentro del jTextfield que corresponde al nombre
      * de la carta que se quiere agregar. 
      */
->>>>>>> 5969a0a7dd26f41e5bb72e0965f6d6ebf80743b9
     
     public void agregarCartaAColeccion(String nombre)
     {
