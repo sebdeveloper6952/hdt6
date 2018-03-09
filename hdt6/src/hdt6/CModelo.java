@@ -26,7 +26,10 @@ public class CModelo
     protected Map<String, String> mapaCartas;
     protected List<ObservadorColeccion> obsColeccion;
     protected List<ObservadorCartas> obsCartas;
+    /* Si se corre en Netbeans, utilizar "src/cards_desc.txt". Si se corre
+       utilizando el .jar, utilizar "cards_desc.txt" */
     protected String fileName = "src/cards_desc.txt";
+    //protected String fileName = "cards_desc.txt";
     
    /**
     * Este es el constructor de la clase Cmodelo, este se utiliza solo para 

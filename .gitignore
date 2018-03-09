@@ -8,7 +8,8 @@
 #java
 *.class
 
-#who knows
 core
 /hdt6/nbproject/private/
 /hdt6/build/
+/hdt6/dist/lib
+/hdt6/dist/README.TXT
